@@ -108,13 +108,11 @@ public class MySudokuBoard {
     private int[][] miniSquare(int spot) {
 
         int[][] mini = new int[3][3];
-        int startRow = (spot - 1) / 3 * 3;
-        int startCol = (spot - 1) % 3 * 3;
-
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                mini[row][col] = board[startRow + row][startCol + col];
-            }
+        for(int r = 0; r < 3; r++) {
+            // whoa - wild! This took me a solid hour to figure out (at least)
+            // This translates between the "spot" in the 9x9 Sudoku board
+            // and a new mini square of 3x3
+            System.arraycopy(board[(spot - 1) / 3 * 3 + r], (spot - 1) % 3 * 3 + 0, mini[r], 0, 3);
         }
 
         return mini;
