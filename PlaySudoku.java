@@ -1,6 +1,6 @@
 // Aram Suleiman
 // CS 143
-// HW #1: Sudoku #1 (Board Setup)
+// HW #2: Sudoku #2 (isValid, isSolved)
 //
 // This program holds our main method, which runs Sudoku
 
@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 
 public class PlaySudoku {
     public static void main(String[] args) throws FileNotFoundException {
-        SudokuBoard game = new SudokuBoard("/Users/as0987893/IdeaProjects/Sudoku/src/data1-1-1.sdk");
+        MySudokuBoard game = new MySudokuBoard("/Users/as0987893/IdeaProjects/Sudoku/src/data1-1-1.sdk");
         System.out.println(game.toString());
     }
 }
