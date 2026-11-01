@@ -1,6 +1,6 @@
 // Aram Suleiman
 // CS 143
-// HW #2: Sudoku #2 (isValid, isSolved)
+// HW #3: Sudoku #3 (solve)
 //
 // This program will hold all the data of the board class for our Sudoku
 
@@ -10,7 +10,7 @@ import java.util.*;
 
 public class MySudokuBoard {
 
-    private int[][] board = new int[9][9]; // Board data
+    private final int[][] board = new int[9][9]; // Board data
 
     // constructor
     // pre: file exists and has 9 x 9 characters
@@ -167,5 +167,39 @@ public class MySudokuBoard {
     // post: returns true if board is valid board has only 0-9 values and no row column or mini square has duplicates otherwise false
     public boolean isValid() {
         return isValidData() && checkRows() && checkCols() && checkMiniSquares();
+    }
+
+    // pre: Board has been declared
+    // post: returns true if the board is solvable and solves and returns false if not
+    public boolean solve(){
+
+        boolean isBoardSolved = false;
+
+        if (!isValid()){
+            return false;
+        } else if (isSolved()){
+            return true;
+        } else{
+
+            for (int row = 0; row < 9; row++){
+                for (int col = 0; col < 9; col++){
+                    if (board[row][col] == 0){
+
+                        for (int x = 1; x <= 9 && !isBoardSolved; x++) {
+                            board[row][col] = x;
+                            isBoardSolved = solve();
+                        }
+
+                        if (!isBoardSolved){
+                            board[row][col] = 0;
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+        return isBoardSolved;
     }
 }
